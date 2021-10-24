@@ -13,3 +13,4 @@ Turbolinks.start()
 ActiveStorage.start()
 import "bootstrap"
 import "../stylesheets/application"
+import 'bootstrap-icons/font/bootstrap-icons.css'

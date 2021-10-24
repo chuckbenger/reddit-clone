@@ -14,10 +14,18 @@
 
 <body>
 <%= render 'layouts/header' %>
-<div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
+<div class="container ">
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= get_mapping(message_type) %> alert-dismissible fade show m-1" role="alert">
+      <%= message %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+  <div class="d-flex p-1 mt-3 align-items-center flex-column">
+    <div>
+      <%= yield %>
+    </div>
+  </div>
 </div>
 </body>
 </html>
