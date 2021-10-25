@@ -8,10 +8,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="d-flex ms-auto">
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <%= form_with url: subreddits_search_path, class: 'd-flex' do |form| %>
+          <%= form.search_field :search, class: "form-control me-2" %>
+          <%= form.submit value: 'search', class: 'btn btn-outline-success' %>
+        <% end %>
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

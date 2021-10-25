@@ -1,0 +1,13 @@
+<h1>Create subreddit</h1>
+
+<%= form_with model: @subreddit, local: true do |form| %>
+  <%= render 'shared/error_messages', object: form.object %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+
+  <%= form.submit %>
+<% end %>
