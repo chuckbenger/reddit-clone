@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @post.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @post.description %>
+</p>
+
+<p>
+  <strong>Subreddit:</strong>
+  <%= @post.subreddit_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user_id %>
+</p>
+
+<h4>Comments</h4>
+<ul>
+  <% @post.comments.each do |comment| %>
+  <li><%= comment.text %> - <%= comment.user.email %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_subreddit_post_path(@subreddit, @post) %> |
+<%= link_to 'Back', subreddit_posts_path(@subreddit) %>
+<%= link_to 'New Comment', new_subreddit_post_comment_path(@subreddit, @post) %>

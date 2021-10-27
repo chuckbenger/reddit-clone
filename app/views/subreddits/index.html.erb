@@ -1,5 +1,17 @@
+<% provide(:title, "Subreddits") %>
+
 <h1>Subreddits</h1>
 
-<div class="list-group">
-  <%= render @subreddits %>
+<div class="digg_pagination">
+  <div class="page_info">
+    <%= page_entries_info @subreddits %>
+  </div>
+  <div class="list-group">
+    <%= render @subreddits %>
+  </div>
+  <%= will_paginate @subreddits, :container => false %>
 </div>
+
+<button type="button" class="btn btn-outline-primary position-fixed bottom-0 end-0 me-1 mb-1">
+  <a href="<%= new_subreddit_path %>">Create Subreddit</a>
+</button>

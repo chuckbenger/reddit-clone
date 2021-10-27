@@ -1,8 +1,8 @@
 class SubredditsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_action :authenticate_user!, only: %i[new edit update destroy create]
 
   def index
-    @subreddits = Subreddit.all
+    @subreddits = Subreddit.paginate(page: params[:page])
   end
 
   def show
@@ -10,7 +10,7 @@ class SubredditsController < ApplicationController
   end
 
   def search
-    @subreddits = Subreddit.search(params[:search])
+    @subreddits = Subreddit.paginate(page: params[:page]).search(params[:search])
     render 'index'
   end
 
@@ -26,18 +26,6 @@ class SubredditsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def edit
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
   end
 
   private

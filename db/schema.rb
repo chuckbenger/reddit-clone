@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_013117) do
+ActiveRecord::Schema.define(version: 2021_10_27_015323) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "text"
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "subreddit_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subreddit_id"], name: "index_posts_on_subreddit_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "subreddits", force: :cascade do |t|
     t.string "name"
@@ -44,5 +65,9 @@ ActiveRecord::Schema.define(version: 2021_10_25_013117) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "posts", "subreddits"
+  add_foreign_key "posts", "users"
   add_foreign_key "subreddits", "users"
 end

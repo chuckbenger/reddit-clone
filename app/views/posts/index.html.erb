@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Subreddit</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.name %></td>
+        <td><%= post.description %></td>
+        <td><%= post.subreddit_id %></td>
+        <td><%= post.user_id %></td>
+        <td><%= link_to 'Show', subreddit_post_path(@subreddit, post) %></td>
+        <td><%= link_to 'Edit', edit_subreddit_post_path(@subreddit, post) %></td>
+        <td><%= link_to 'Destroy', subreddit_post_path(@subreddit, post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', subreddits_path %>
+<%= link_to 'New Post', new_subreddit_post_path(@subreddit) %>
